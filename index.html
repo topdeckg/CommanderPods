@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#11151b">
+    <title>Commander Pod Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="pods.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="page-header">
+        <p class="eyebrow">Casual Commander night</p>
+        <h1>Pod Generator</h1>
+        <p class="subtitle">A simple way to seat your next round.</p>
+      </header>
+
+      <p id="app-message" class="app-message" role="status" aria-live="polite"></p>
+
+      <div class="layout">
+        <section class="panel players-panel" aria-labelledby="players-heading">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">The roster</p>
+              <h2 id="players-heading">Players <span id="player-count" class="count"></span></h2>
+            </div>
+            <button id="clear-players" class="button button-quiet" type="button">Clear all</button>
+          </div>
+
+          <form id="add-player-form" class="add-player-form">
+            <label class="sr-only" for="player-name">Player name</label>
+            <input id="player-name" name="player-name" type="text" maxlength="60"
+              placeholder="Enter a player name" autocomplete="off">
+            <button class="button button-primary" type="submit">Add</button>
+          </form>
+          <p id="player-message" class="inline-message" role="status" aria-live="polite"></p>
+
+          <ul id="player-list" class="player-list" aria-label="Player roster"></ul>
+          <p id="empty-roster" class="empty-state">Add players to get started.</p>
+        </section>
+
+        <section class="panel pods-panel" aria-labelledby="pods-heading">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Seat the table</p>
+              <h2 id="pods-heading">Pods</h2>
+            </div>
+            <span id="round-label" class="round-label">No round yet</span>
+          </div>
+
+          <div class="round-actions">
+            <button id="generate-pods" class="button button-primary button-large" type="button">
+              Generate Pods
+            </button>
+            <button id="reshuffle-pods" class="button button-secondary" type="button" disabled>
+              Reshuffle
+            </button>
+          </div>
+
+          <section class="round-timer" aria-labelledby="timer-heading">
+            <div class="timer-display">
+              <p class="eyebrow">Keep the round moving</p>
+              <h3 id="timer-heading">Round timer</h3>
+              <output id="timer-clock" class="timer-clock" aria-label="Time remaining">01:00:00</output>
+              <p id="timer-status" class="timer-status">Ready</p>
+            </div>
+            <div class="timer-controls">
+              <label for="timer-minutes">Minutes</label>
+              <input id="timer-minutes" type="number" min="1" max="1440" step="1" value="60">
+              <div class="timer-buttons">
+                <button id="timer-start-pause" class="button button-primary" type="button">Start</button>
+                <button id="timer-reset" class="button button-secondary" type="button">Reset</button>
+              </div>
+            </div>
+          </section>
+
+          <div id="round-content" class="round-content">
+            <p class="empty-state">Your generated pods will appear here.</p>
+          </div>
+
+          <details id="history-details" class="history">
+            <summary>Round history <span id="history-count" class="history-count"></span></summary>
+            <div id="round-history" class="history-list"></div>
+          </details>
+
+          <div class="reset-row">
+            <button id="reset-event" class="button button-quiet" type="button">Reset event</button>
+          </div>
+        </section>
+      </div>
+      <footer>Event data is saved in this browser on this device.</footer>
+    </main>
+  </body>
+</html>
